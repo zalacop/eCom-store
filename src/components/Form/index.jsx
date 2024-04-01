@@ -42,8 +42,6 @@ function Form() {
     const validateForm = (event) => {
         event.preventDefault();
         let formIsValid = true;
-     
-        const errors = {};
 
         if (fullName.length < 3) {
         setErrorFullName("Full name must be at least 3 characters!");
