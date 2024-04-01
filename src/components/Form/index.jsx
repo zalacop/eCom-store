@@ -8,12 +8,12 @@ function Form() {
 
     const body = {fullName, subject, email, message};
 
-    const [errors, setErrors] = useState({
-        fullName: "",
-        subject: "",
-        email: "",
-        message: ""
-    });
+    const [errorFullName, setErrorFullName] = useState("");
+    const [errorSubject, setErrorSubject] = useState("");
+    const [errorEmail, setErrorEmail] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const errorBody = {errorFullName, errorSubject, errorEmail, errorMessage};
 
     const inputValue = (event) => {
         const { name, value } = event.target;
@@ -24,9 +24,18 @@ function Form() {
             message: setMessage
         };
 
+        const setErrorValues = {
+            fullName: setErrorFullName,
+            subject: setErrorSubject,
+            email: setErrorEmail,
+            message: setErrorMessage
+        }
+
         const setValue = setValues[name];
+        const setErrorValue = setErrorValues[name];
         if (setValue) {
             setValue(value);
+            setErrorValue("");
         };
     };
 
@@ -35,26 +44,25 @@ function Form() {
         let formIsValid = true;
      
         const errors = {};
-        setErrors(errors);
 
         if (fullName.length < 3) {
-        errors.fullName = 'Full name must be at least 3 characters!';
+        setErrorFullName("Full name must be at least 3 characters!");
         formIsValid = false;
         } ;
 
         if (subject.length < 3) {
-        errors.subject = 'Subject must be at least 3 characters!';
+        setErrorSubject("Subject must be at least 3 characters!");
         formIsValid = false;
         };
 
         const emailRegex = /^([a-zA-Z0-9._]+)@[a-zA-Z0-9._]+\.[a-zA-Z]{2,7}$/gm;
         if (!email.match(emailRegex)) {
-        errors.email = 'Please enter a valid email address!';
+        setErrorEmail("Please enter a valid email address!");
         formIsValid = false;
         };
 
         if (message.length < 3) {
-        errors.message = 'Body must be at least 3 characters!';
+        setErrorMessage("Body must be at least 3 characters!");
         formIsValid = false;
         };
 
@@ -75,7 +83,7 @@ function Form() {
                 value={fullName}
                 onChange={inputValue}
             />
-            <span>{errors.fullName}</span>
+            <span>{errorBody.errorFullName}</span>
         </div>
         <div>
             <label>Subject</label>
@@ -85,7 +93,7 @@ function Form() {
                 value={subject}
                 onChange={inputValue}
             />
-            <span>{errors.subject}</span>
+            <span>{errorBody.errorSubject}</span>
         </div>
         <div>
             <label>Email</label>
@@ -95,7 +103,7 @@ function Form() {
                 value={email}
                 onChange={inputValue}
             />
-            <span>{errors.email}</span>
+            <span>{errorBody.errorEmail}</span>
         </div>
         <div>
             <label>Message</label>
@@ -106,7 +114,7 @@ function Form() {
                 value={message}
                 onChange={inputValue}
             />
-            <span>{errors.message}</span>
+            <span>{errorBody.errorMessage}</span>
         </div>
         <button type="submit">Submit</button>
         </form>
