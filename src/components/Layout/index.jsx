@@ -1,12 +1,12 @@
 import Header from "../Header";
 import Footer from "../Footer";
-import Contact from "../Contact";
+import { getProducts } from "../Products";
 
 function Layout() {
     return (
         <>
             <Header />
-            <Contact />
+            {getProducts()}
             <Footer />
         </>
     );
