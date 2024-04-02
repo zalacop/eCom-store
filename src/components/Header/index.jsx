@@ -1,3 +1,4 @@
+import { MdOutlineShoppingBag } from "react-icons/md";
 import Nav from "../Nav";
 
 function Header() {
@@ -7,6 +8,7 @@ function Header() {
             <div>
                 <Nav />
             </div>
+            <MdOutlineShoppingBag />
         </header>
     );
 }
