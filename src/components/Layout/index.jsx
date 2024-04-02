@@ -1,14 +1,14 @@
 import Header from "../Header";
 import Footer from "../Footer";
-import { getProducts } from "../Products";
 import Search from "../Search";
+import { Outlet } from "react-router-dom";
 
 function Layout() {
     return (
         <>
             <Header />
-            {Search()}
-            {getProducts()}
+            <Search />
+            <Outlet />
             <Footer />
         </>
     );

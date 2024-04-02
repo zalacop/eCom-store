@@ -7,8 +7,8 @@ function Search() {
     const { data: products} = useApi(base);
 
     const [searchValue, setSearchValue] = useState("");
-    const [searchResult, setSearchResult] = useState([]);
-    const [originalProducts, setOriginalProducts] = useState([]);
+    const [searchResult, setSearchResult] = useState(products);
+    const [originalProducts, setOriginalProducts] = useState(products);
 
     useEffect(() => {
         setOriginalProducts(products);
@@ -28,12 +28,23 @@ function Search() {
     return (
         <div>
             <FaSearch />
-            <input type="text"
-            value={searchValue} 
-            onChange={handleChange}
+            <input 
+                type="text"
+                value={searchValue} 
+                onChange={handleChange}
             />
+            {searchValue && (
+                <div>
+                    {searchResult.map(product => (
+                        <div key={product.id}>
+                            <h3>{product.title}</h3>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
-    )
+    );    
 }
 
 export default Search;
+

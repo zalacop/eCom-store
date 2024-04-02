@@ -10,7 +10,7 @@ function calculateDiscount(price, discountedPrice) {
     } 
 }
 
-export function getProducts() {
+export default function Products() {
     const base = "https://v2.api.noroff.dev/online-shop";
     const { data, isLoading, isError} = useApi(base);
 
