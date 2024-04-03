@@ -1,7 +1,8 @@
 import React from "react";
 import useApi from "../hooks/useFetchApi";
+import { Link } from "react-router-dom";
 
-function calculateDiscount(price, discountedPrice) {
+export function calculateDiscount(price, discountedPrice) {
     if(discountedPrice && discountedPrice !== price) {
         const discount = Math.round((price - discountedPrice) / price * 100);
         return discount.toString();
@@ -25,7 +26,7 @@ export default function Products() {
         <div>
             {data.map((product) => (
                 <div key={product.id}>
-                    <a href="">
+                    <Link to={`/product/${product.id}`}>
                         <div>
                             <img src={product.image.url} alt={product.title} />
                         </div>
@@ -46,7 +47,7 @@ export default function Products() {
                                 <p>$ {product.price}</p>
                             )}
                         </div>
-                    </a>
+                    </Link>
                 </div>
             ))}
         </div>

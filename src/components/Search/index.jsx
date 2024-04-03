@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import useApi from "../hooks/useFetchApi";
+import { Link } from "react-router-dom";
 
 function Search() {
     const base = "https://v2.api.noroff.dev/online-shop";
@@ -22,8 +23,11 @@ function Search() {
     useEffect(() => {
         const filteredResults = originalProducts.filter(product => product.title.toLowerCase().includes(searchValue.toLocaleLowerCase()));
         setSearchResult(filteredResults);
-        console.log(filteredResults);
     }, [searchValue, originalProducts]);
+
+    function handleProductClick() {
+        setSearchValue("");
+    }
 
     return (
         <div>
@@ -37,7 +41,9 @@ function Search() {
                 <div>
                     {searchResult.map(product => (
                         <div key={product.id}>
+                            <Link to={`/product/${product.id}`} onClick={handleProductClick}>
                             <h3>{product.title}</h3>
+                            </Link>
                         </div>
                     ))}
                 </div>

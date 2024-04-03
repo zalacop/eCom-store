@@ -3,7 +3,7 @@
 function Footer() {
     return (
         <footer>
-            <p>&copy; 2024 eCom Store. All rights reserved.</p>
+            <p>&copy; 2024 eCom Store.</p>
         </footer>
     );
 }
