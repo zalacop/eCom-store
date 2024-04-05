@@ -1,6 +1,6 @@
-import React from "react";
-import useApi from "../hooks/useFetchApi";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import useProductsStore from "../store/products";
 
 export function calculateDiscount(price, discountedPrice) {
     if(discountedPrice && discountedPrice !== price) {
@@ -9,48 +9,56 @@ export function calculateDiscount(price, discountedPrice) {
     } else {
         return null;
     } 
-}
+};
 
-export default function Products() {
-    const base = "https://v2.api.noroff.dev/online-shop";
-    const { data, isLoading, isError} = useApi(base);
-
-    if(isLoading) {
-        return <p>Loading...</p>
-    }
-    if(isError) {
-        return <p>Something went wrong!</p>
-    }
-
+function ProductsCard({ product: { id, image, title, price, discountedPrice } }) {
     return (
         <div>
-            {data.map((product) => (
-                <div key={product.id}>
-                    <Link to={`/product/${product.id}`}>
-                        <div>
-                            <img src={product.image.url} alt={product.title} />
-                        </div>
-                        {product.discountedPrice && product.discountedPrice !== product.price && (
-                            <p>
-                                <span>NOW {calculateDiscount(product.price, product.discountedPrice)}% OFF</span>
-                            </p>
-                        )}
-                        <h3>{product.title}</h3>
-                        <div>
-                            {product.discountedPrice && product.discountedPrice !== product.price && (
-                                <>
-                                    <p>New Price: ${product.discountedPrice}</p>
-                                    <p>Old Price: ${product.price}</p>
-                                </>
-                            )}
-                            {!product.discountedPrice || product.discountedPrice === product.price && (
-                                <p>$ {product.price}</p>
-                            )}
-                        </div>
-                    </Link>
+            <Link to={`/product/${id}`}>
+                <div>
+                    <img src={image.url} alt={title} />
                 </div>
-            ))}
+                {discountedPrice && discountedPrice !== price && (
+                    <p>
+                        <span>NOW {calculateDiscount(price, discountedPrice)}% OFF</span>
+                    </p>
+                )}
+                <h3>{title}</h3>
+                <div>
+                    {discountedPrice && discountedPrice !== price && (
+                        <>
+                            <p>New Price: ${discountedPrice}</p>
+                            <p>Old Price: ${price}</p>
+                        </>
+                    )}
+                    {!discountedPrice || discountedPrice === price && (
+                        <p>$ {price}</p>
+                    )}
+                </div>
+            </Link>
         </div>
-    )
+    );
+};
 
-}
+function Products() {
+    const { products, fetchProducts, addToCart, cart } = useProductsStore();
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
+
+    return (
+        <>
+            <div>cart items: {cart.length}</div>
+            {products.map((product) =>
+            <div key={product.id}>
+                <ProductsCard
+                    product={product}
+                />
+            </div>
+            )}
+        </>
+    );
+};
+
+export default Products;
