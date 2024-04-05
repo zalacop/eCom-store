@@ -51,11 +51,11 @@ function Products() {
         <>
             <div>cart items: {cart.length}</div>
             {products.map((product) =>
-            <div key={product.id}>
-                <ProductsCard
-                    product={product}
-                />
-            </div>
+                <div key={product.id}>
+                    <ProductsCard
+                        product={product}
+                    />
+                </div>
             )}
         </>
     );

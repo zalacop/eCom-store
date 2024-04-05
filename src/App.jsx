@@ -5,7 +5,6 @@ import Layout from './components/Layout';
 import Contact from './components/Contact';
 import Product from './components/SingleProduct';
 import Home from './components/Home';
-import ShoppingCart from './components/ShoppingCart';
 import Checkout from './components/Checkout';
 
 function App() {
@@ -16,7 +15,6 @@ function App() {
         <Route index element={<Home />} />
         <Route path="contact" element={<Contact />} />
         <Route path="product/:id" element={<Product />} />
-        <Route path="shopping" element={<ShoppingCart />} />
         <Route path="checkout" element={<Checkout />} />
       </Route>
     </Routes>

@@ -16,7 +16,7 @@ function Product() {
 
     const product = products.find((product) => product.id === id);
 
-    function handleButtonClick(id) {
+    function handleButtonClick() {
         addToCart(product.id, quantity); 
     };
 
