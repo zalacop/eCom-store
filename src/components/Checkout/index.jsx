@@ -1,7 +1,8 @@
 import React from "react";
 import useProductsStore from "../store/products";
+import { Link } from "react-router-dom";
 
-function Checkout() {
+function ProductsInCart() {
     const { cart, clearCart, deleteFromCart, getCartTotal, addToCart } = useProductsStore();
 
     function handleRemoveProduct(id) {
@@ -47,9 +48,11 @@ function Checkout() {
                     </div>
                 ))}
             </div>
-            <button>Checkout</button>
+            <Link to={"/success"}>
+                <button>Checkout</button>
+            </Link>
         </>
     );
 };
 
-export default Checkout;
+export default ProductsInCart;

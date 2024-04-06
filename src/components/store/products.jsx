@@ -1,35 +1,58 @@
 import { create } from "zustand";
 
+const saveProductToLocalStorage = (products) => {
+    localStorage.setItem("products", JSON.stringify(products));
+};
+
+const saveCartToLocalStorage = (cart) => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+const loadCartFromLocalStorage = () => {
+    const getStoredCart = localStorage.getItem("cart");
+    return getStoredCart ? JSON.parse(getStoredCart) : [];
+};
+
 const useProductsStore = create((set, get) => ({
     products: [],
-    cart: [],
+    cart: loadCartFromLocalStorage(),
 
     fetchProducts: async () => {
         const base = "https://v2.api.noroff.dev/online-shop";
         const response = await fetch(base);
         const json = await response.json();
         set((state) => ({ ...state, products: json.data}));
+        saveProductToLocalStorage(json.data);
     },
 
     addToCart: (id, quantity = 1) => {
         set((state) => {
-            const product = state.products.find(clickedProduct => id === clickedProduct.id);
-            
-            const productInCart = state.cart.findIndex((clickedProduct) => id === clickedProduct.id);
-
-            if(productInCart === -1) {
-                product.quantity = quantity;
-                return { ...state, cart: [...state.cart, product] };
-            } 
-
-            state.cart[productInCart].quantity += quantity;
-            return { ...state };
+            const productToAdd = state.products.find((product) => product.id === id);
+            const productInCartIndex = state.cart.findIndex((product) => product.id === id);
+    
+            if (!productToAdd) {
+                state.fetchProducts();
+                return state;
+            };
+    
+            const updatedCart = [...state.cart];
+    
+            if (productInCartIndex === -1) {
+                updatedCart.push({ ...productToAdd, quantity: quantity });
+            } else {
+                updatedCart[productInCartIndex].quantity += quantity;
+            };
+    
+            saveCartToLocalStorage(updatedCart);
+            return { ...state, cart: updatedCart };
         });
     },
 
     clearCart: () => 
         set(() => {
-        return { cart: [] };
+            saveCartToLocalStorage([]);
+            saveProductToLocalStorage([]);
+            return { cart: [] };
     }),
 
     deleteFromCart: (id) =>
@@ -42,6 +65,8 @@ const useProductsStore = create((set, get) => ({
             }
             return product;
         }).filter(product => product.id !== id || product.quantity > 0);
+        
+        saveCartToLocalStorage(updatedCart);
         return { ...state, cart: updatedCart };
     }),
 
