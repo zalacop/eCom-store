@@ -6,6 +6,8 @@ function Form() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
+    const [notification, setNotification] = useState(null);
+
     const body = {fullName, subject, email, message};
 
     const [errorFullName, setErrorFullName] = useState("");
@@ -44,79 +46,90 @@ function Form() {
         let formIsValid = true;
 
         if (fullName.length < 3) {
-        setErrorFullName("Full name must be at least 3 characters!");
-        formIsValid = false;
-        } ;
+            setErrorFullName("Full name must be at least 3 characters!");
+            formIsValid = false;
+        }
 
         if (subject.length < 3) {
-        setErrorSubject("Subject must be at least 3 characters!");
-        formIsValid = false;
-        };
+            setErrorSubject("Subject must be at least 3 characters!");
+            formIsValid = false;
+        }
 
         const emailRegex = /^([a-zA-Z0-9._]+)@[a-zA-Z0-9._]+\.[a-zA-Z]{2,7}$/gm;
         if (!email.match(emailRegex)) {
-        setErrorEmail("Please enter a valid email address!");
-        formIsValid = false;
-        };
+            setErrorEmail("Please enter a valid email address!");
+            formIsValid = false;
+        }
 
         if (message.length < 3) {
-        setErrorMessage("Body must be at least 3 characters!");
-        formIsValid = false;
-        };
+            setErrorMessage("Body must be at least 3 characters!");
+            formIsValid = false;
+        }
 
-        if(formIsValid) {
+        if (formIsValid) {
+            setNotification("Message successfully sent =)!");
             console.log(body);
-        };
+            setTimeout(() => {
+                setNotification(null);
+            }, 5000);
+        }
 
         return formIsValid;
     };
 
     return (
-        <form onSubmit={validateForm}>
         <div>
-            <label>Full Name</label>
-            <input
-                type="text"
-                name="fullName"
-                value={fullName}
-                onChange={inputValue}
-            />
-            <span>{errorBody.errorFullName}</span>
+            <form onSubmit={validateForm}>
+                <div>
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        name="fullName"
+                        value={fullName}
+                        onChange={inputValue}
+                    />
+                    <span>{errorBody.errorFullName}</span>
+                </div>
+                <div>
+                    <label>Subject</label>
+                    <input
+                        type="text"
+                        name="subject"
+                        value={subject}
+                        onChange={inputValue}
+                    />
+                    <span>{errorBody.errorSubject}</span>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={inputValue}
+                    />
+                    <span>{errorBody.errorEmail}</span>
+                </div>
+                <div>
+                    <label>Message</label>
+                    <textarea
+                        name="message"
+                        row="5"
+                        col="10"
+                        value={message}
+                        onChange={inputValue}
+                    />
+                    <span>{errorBody.errorMessage}</span>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            {notification && (
+                <div>
+                    <span>{notification}</span>
+                </div>
+            )}
         </div>
-        <div>
-            <label>Subject</label>
-            <input
-                type="text"
-                name="subject"
-                value={subject}
-                onChange={inputValue}
-            />
-            <span>{errorBody.errorSubject}</span>
-        </div>
-        <div>
-            <label>Email</label>
-            <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={inputValue}
-            />
-            <span>{errorBody.errorEmail}</span>
-        </div>
-        <div>
-            <label>Message</label>
-            <textarea
-                name="message"
-                row="5"
-                col="10"
-                value={message}
-                onChange={inputValue}
-            />
-            <span>{errorBody.errorMessage}</span>
-        </div>
-        <button type="submit">Submit</button>
-        </form>
     );
-};
+}
 
 export default Form;
