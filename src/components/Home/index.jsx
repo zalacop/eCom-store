@@ -1,13 +1,14 @@
 import React from "react";
 import Products from "../Products";
+import { ProductsContainer } from "../Products/index.styles";
 
 function Home() {
     return (
         <>
-        <h2>Products</h2>
-        <div>
+        <ProductsContainer>
+        <h2 className="d-flex justify-content-center my-5">Products</h2>
             <Products />
-        </div>
+        </ProductsContainer>
         </>
     );
 }

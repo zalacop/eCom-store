@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useProductsStore from "../store/products";
+import { CardContainer, CardImage } from "./index.styles";
 
 export function calculateDiscount(price, discountedPrice) {
     if(discountedPrice && discountedPrice !== price) {
@@ -12,32 +13,23 @@ export function calculateDiscount(price, discountedPrice) {
 };
 
 function ProductsCard({ product: { id, image, title, price, discountedPrice } }) {
-    const cardImgStyle = {
-        maxHeight: '250px', 
-    };
-
-    const cardStyle = {
-        height: '450px',
-    }
-
     return (
+ 
         <div className="col-12 mb-5">
-            <div className="card rounded-0" style={cardStyle}>
+            <CardContainer className="card rounded-0">
                 <Link to={`/product/${id}`} className="card-link">
-                    <img src={image.url} alt={title} className="card-img-top img-fluid rounded-0 mt-4 w-75" style={cardImgStyle} />
-                    <div className="card-body">
+                    <CardImage src={image.url} alt={title} className="card-img-top img-fluid rounded-0" />
+                    <div className="card-body text-center">
                         <h5 className="card-title">{title}</h5>
                         {discountedPrice && discountedPrice !== price ? (
                             <>
                                 <p className="card-text">
                                     <span>NOW {calculateDiscount(price, discountedPrice)}% OFF</span>
                                 </p>
-                                <div className="row justify-content-center"> 
-                                    <div className="col text-center"> 
+                                <div className="row justify-content-center">
+                                    <div className="col text-center">
                                         <p className="card-text">New Price: ${discountedPrice}</p>
-                                    </div>
-                                    <div className="col text-center"> 
-                                        <p className="card-text" style={{ textDecoration: 'line-through' }}>${price}</p>
+                                        <p className="card-text" style={{ textDecoration: 'line-through' }}>Old Price: ${price}</p>
                                     </div>
                                 </div>
                             </>
@@ -46,7 +38,7 @@ function ProductsCard({ product: { id, image, title, price, discountedPrice } })
                         )}
                     </div>
                 </Link>
-            </div>
+            </CardContainer>
         </div>
     );
 };
