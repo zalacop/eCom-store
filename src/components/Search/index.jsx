@@ -32,7 +32,7 @@ function Search() {
 
     return (
         <>
-        <SearchContainer className="input-group h-25 m-0 d-flex justify-content-center rounded-0">
+        <SearchContainer className="input-group h-25 mx-auto d-flex justify-content-center rounded-0">
             <span className="input-group-text rounded-0"><FaSearch /></span>
             <input 
                 type="text" 
