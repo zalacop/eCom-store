@@ -21,7 +21,7 @@ function ProductsInCart() {
 
     return (
         <>
-        <div className="my-5 py-5 border mx-auto max-w-800 p-4 d-flex flex-column justify-content-center gap-5 w-75">
+        <div className="my-5 py-5 mx-auto p-4 d-flex flex-column justify-content-center gap-5 w-75">
             <div className="mx-auto px-4 d-flex flex-column align-items-center gap-3">
                 <h2 className="fs-2">Your shopping cart</h2>
                 <Link to="/">
@@ -35,7 +35,7 @@ function ProductsInCart() {
                     </>
                 )}
             </div>
-            
+
             {cart.length > 0 && (
                 <div className="row justify-content-center">
                     {cart.map(({ id, image, title, quantity, price, discountedPrice }) => (
