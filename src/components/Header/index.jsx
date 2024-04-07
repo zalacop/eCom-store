@@ -27,7 +27,8 @@ function Header() {
                             </div>
                         </div>
                         <BrandLink to="/">
-                            <h1 className="fs-2">eCom Store</h1>
+                            <img src="/src/assets/icons8-penguin-64.png" alt="Penguin icon" />
+                            <h1 className="fs-2">Pingo</h1>
                         </BrandLink>
                         <CartWrapper>
                             <CartIcon />
