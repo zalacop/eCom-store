@@ -8,35 +8,68 @@ export function calculateDiscount(price, discountedPrice) {
         return discount.toString();
     } else {
         return null;
-    } 
+    }
 };
 
 function ProductsCard({ product: { id, image, title, price, discountedPrice } }) {
+    const cardImgStyle = {
+        maxHeight: '250px', 
+    };
+
+    const cardStyle = {
+        height: '450px',
+    }
+
     return (
-        <div>
-            <Link to={`/product/${id}`}>
-                <div>
-                    <img src={image.url} alt={title} />
-                </div>
-                {discountedPrice && discountedPrice !== price && (
-                    <p>
-                        <span>NOW {calculateDiscount(price, discountedPrice)}% OFF</span>
-                    </p>
+        // <div className="col-12 mb-5">
+        //     <div className="card" style={cardStyle}>
+        //         <Link to={`/product/${id}`} className="card-link">
+        //             <img src={image.url} alt={title} className="card-img-top img-fluid" style={cardImgStyle} />
+        //             <div className="card-body">
+        //                 <h5 className="card-title">{title}</h5>
+        //                 {discountedPrice && discountedPrice !== price ? (
+        //                     <>
+        //                         <p className="card-text">
+        //                             <span>NOW {calculateDiscount(price, discountedPrice)}% OFF</span>
+        //                         </p>
+        //                         <p className="card-text">New Price: ${discountedPrice}</p>
+        //                         <p className="card-text">Old Price: ${price}</p>
+        //                     </>
+        //                 ) : (
+        //                     <p className="card-text">$ {price}</p>
+        //                 )}
+        //             </div>
+        //         </Link>
+        //     </div>
+        // </div>
+        <div className="col-12 mb-5">
+    <div className="card" style={cardStyle}>
+        <Link to={`/product/${id}`} className="card-link">
+            <img src={image.url} alt={title} className="card-img-top img-fluid" style={cardImgStyle} />
+            <div className="card-body">
+                <h5 className="card-title">{title}</h5>
+                {discountedPrice && discountedPrice !== price ? (
+                    <>
+                        <p className="card-text">
+                            <span>NOW {calculateDiscount(price, discountedPrice)}% OFF</span>
+                        </p>
+                        <div className="row justify-content-center"> 
+                            <div className="col text-center"> 
+                                <p className="card-text">New Price: ${discountedPrice}</p>
+                            </div>
+                            <div className="col text-center"> 
+                                <p className="card-text" style={{ textDecoration: 'line-through' }}>${price}</p>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <p className="card-text">$ {price}</p>
                 )}
-                <h3>{title}</h3>
-                <div>
-                    {discountedPrice && discountedPrice !== price && (
-                        <>
-                            <p>New Price: ${discountedPrice}</p>
-                            <p>Old Price: ${price}</p>
-                        </>
-                    )}
-                    {!discountedPrice || discountedPrice === price && (
-                        <p>$ {price}</p>
-                    )}
-                </div>
-            </Link>
-        </div>
+            </div>
+        </Link>
+    </div>
+</div>
+
     );
 };
 
@@ -48,16 +81,16 @@ function Products() {
     }, [fetchProducts]);
 
     return (
-        <>
-            <div>cart items: {cart.length}</div>
-            {products.map((product) =>
-                <div key={product.id}>
-                    <ProductsCard
-                        product={product}
-                    />
+        <div className="container">
+                <div className="row">
+                    <div>cart items: {cart.length}</div>
+                    {products.map((product) => (
+                        <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4" key={product.id}>
+                            <ProductsCard product={product} />
+                        </div>
+                    ))}
                 </div>
-            )}
-        </>
+        </div>
     );
 };
 
