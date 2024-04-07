@@ -30,25 +30,38 @@ function Search() {
     }
 
     return (
-        <div>
-            <FaSearch />
+        <>
+        <div className="input-group h-25 m-0 px-2 py-4 d-flex justify-content-center rounded-0">
+            <span className="input-group-text rounded-0"><FaSearch /></span>
             <input 
-                type="text"
+                type="text" 
                 value={searchValue} 
-                onChange={handleChange}
+                onChange={handleChange} 
+                className="form-control rounded-0" 
+                autoComplete="off" 
+                placeholder="" 
+                id="search" 
             />
+        </div>
+        <div className="container mt-0 d-flex justify-content-center">
             {searchValue && (
-                <div>
+                <ul className="list-group mt-0 rounded-0">
                     {searchResult.map(product => (
-                        <div key={product.id}>
-                            <Link to={`/product/${product.id}`} onClick={handleProductClick}>
-                            <h3>{product.title}</h3>
+                        <li className="list-group-item d-flex justify-content-start align-items-center" key={product.id}>
+                            <Link to={`/product/${product.id}`} onClick={handleProductClick} className="d-flex align-items-center">
+                                <div className="d-flex ms-1" style={{ width: '70px', height: '70px' }}>
+                                    <img src={product.image?.url} alt={product.title} className="img-fluid w-100 h-100" />
+                                </div>
+                                <div>
+                                    <p className="font-bold fs-4 ms-3 m-0">{product.title}</p>
+                                </div>
                             </Link>
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
             )}
         </div>
+        </>
     );    
 }
 
