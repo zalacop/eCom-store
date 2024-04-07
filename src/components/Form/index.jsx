@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button } from '../SingleProduct/index.styles';
+import { Label } from './index.styles';
 
 function Form() {
     const [fullName, setFullName] = useState("");
@@ -78,10 +80,15 @@ function Form() {
     };
 
     return (
-        <div className="container">
+        <div className="container w-50">
+            {notification && (
+                <div className="alert alert-success mt-3 rounded-0 mx-auto d-flex justify-content-center" role="alert">
+                    {notification}
+                </div>
+            )}
             <form onSubmit={validateForm}>
-                <div className="mb-3">
-                    <label htmlFor="fullName" className="form-label">Full Name</label>
+                <div className="mb-3 d-flex flex-column">
+                    <Label htmlFor="fullName" className="form-label ms-2">Full Name</Label>
                     <input
                         type="text"
                         className="form-control border rounded-0 py-2 px-3 text-base font-medium"
@@ -90,22 +97,22 @@ function Form() {
                         value={fullName}
                         onChange={inputValue}
                     />
-                    <span className="text-danger">{errorBody.errorFullName}</span>
+                    <span className="text-danger ms-3">{errorBody.errorFullName}</span>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="subject" className="form-label">Subject</label>
+                <div className="mb-3 d-flex flex-column">
+                    <Label htmlFor="subject" className="form-label ms-2">Subject</Label>
                     <input
                         type="text"
-                        className="form-control border rounded-0 py-2 px-3 text-base font-medium"
+                        className="form-control border rounded-0 py-2 px-3 text-base"
                         id="subject"
                         name="subject"
                         value={subject}
                         onChange={inputValue}
                     />
-                    <span className="text-danger">{errorBody.errorSubject}</span>
+                    <span className="text-danger ms-3">{errorBody.errorSubject}</span>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email</label>
+                <div className="mb-3 d-flex flex-column">
+                    <Label htmlFor="email" className="form-label ms-2">Email</Label>
                     <input
                         type="email"
                         className="form-control border rounded-0 py-2 px-3 text-base font-medium"
@@ -114,10 +121,10 @@ function Form() {
                         value={email}
                         onChange={inputValue}
                     />
-                    <span className="text-danger">{errorBody.errorEmail}</span>
+                    <span className="text-danger ms-3">{errorBody.errorEmail}</span>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="message" className="form-label">Message</label>
+                <div className="mb-3 d-flex flex-column">
+                    <Label htmlFor="message" className="form-label ms-2">Message</Label>
                     <textarea
                         className="form-control border rounded-0 py-2 px-3 text-base font-medium"
                         id="message"
@@ -126,15 +133,11 @@ function Form() {
                         value={message}
                         onChange={inputValue}
                     ></textarea>
-                    <span className="text-danger">{errorBody.errorMessage}</span>
+                    <span className="text-danger ms-3">{errorBody.errorMessage}</span>
                 </div>
-                <button type="submit" className="btn btn-primary rounded-0">Submit</button>
+                <Button type="submit" className="btn rounded-0 py-2 px-5 border-dark mx-auto d-flex justify-content-center mt-5">Submit</Button>
             </form>
-            {notification && (
-                <div className="alert alert-success mt-3" role="alert">
-                    {notification}
-                </div>
-            )}
+            
         </div>
     );
 }
