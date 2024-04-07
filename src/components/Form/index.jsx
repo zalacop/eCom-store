@@ -78,54 +78,61 @@ function Form() {
     };
 
     return (
-        <div>
+        <div className="container">
             <form onSubmit={validateForm}>
-                <div>
-                    <label>Full Name</label>
+                <div className="mb-3">
+                    <label htmlFor="fullName" className="form-label">Full Name</label>
                     <input
                         type="text"
+                        className="form-control border rounded-0 py-2 px-3 text-base font-medium"
+                        id="fullName"
                         name="fullName"
                         value={fullName}
                         onChange={inputValue}
                     />
-                    <span>{errorBody.errorFullName}</span>
+                    <span className="text-danger">{errorBody.errorFullName}</span>
                 </div>
-                <div>
-                    <label>Subject</label>
+                <div className="mb-3">
+                    <label htmlFor="subject" className="form-label">Subject</label>
                     <input
                         type="text"
+                        className="form-control border rounded-0 py-2 px-3 text-base font-medium"
+                        id="subject"
                         name="subject"
                         value={subject}
                         onChange={inputValue}
                     />
-                    <span>{errorBody.errorSubject}</span>
+                    <span className="text-danger">{errorBody.errorSubject}</span>
                 </div>
-                <div>
-                    <label>Email</label>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email</label>
                     <input
                         type="email"
+                        className="form-control border rounded-0 py-2 px-3 text-base font-medium"
+                        id="email"
                         name="email"
                         value={email}
                         onChange={inputValue}
                     />
-                    <span>{errorBody.errorEmail}</span>
+                    <span className="text-danger">{errorBody.errorEmail}</span>
                 </div>
-                <div>
-                    <label>Message</label>
+                <div className="mb-3">
+                    <label htmlFor="message" className="form-label">Message</label>
                     <textarea
+                        className="form-control border rounded-0 py-2 px-3 text-base font-medium"
+                        id="message"
                         name="message"
-                        row="5"
-                        col="10"
+                        rows="5"
                         value={message}
                         onChange={inputValue}
-                    />
-                    <span>{errorBody.errorMessage}</span>
+                    ></textarea>
+                    <span className="text-danger">{errorBody.errorMessage}</span>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="btn btn-primary rounded-0">Submit</button>
             </form>
             {notification && (
-                <div>
-                    <span>{notification}</span>
+                <div className="alert alert-success mt-3" role="alert">
+                    {notification}
                 </div>
             )}
         </div>
