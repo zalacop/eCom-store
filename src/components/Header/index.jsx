@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import CartIcon from "../CartIcon";
 import Nav from "../Nav";
-import { Link } from "react-router-dom";
 import { BrandLink, CartWrapper, HamburgerIcon, HeaderContainer } from "./index.styles";
 
 function Header() {

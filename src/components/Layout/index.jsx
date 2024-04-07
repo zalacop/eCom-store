@@ -8,7 +8,7 @@ function Layout() {
     return (
         <Container className="flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow bg-gray-100 p-5">
+            <main className="flex-grow-1 bg-gray-100 p-5">
                 <Search />
                 <Outlet />
             </main>
