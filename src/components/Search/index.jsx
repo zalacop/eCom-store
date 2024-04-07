@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import useApi from "../hooks/useFetchApi";
 import { Link } from "react-router-dom";
+import { SearchContainer } from "./index.styles";
 
 function Search() {
     const base = "https://v2.api.noroff.dev/online-shop";
@@ -31,7 +32,7 @@ function Search() {
 
     return (
         <>
-        <div className="input-group h-25 m-0 px-2 py-4 d-flex justify-content-center rounded-0">
+        <SearchContainer className="input-group h-25 m-0 d-flex justify-content-center rounded-0">
             <span className="input-group-text rounded-0"><FaSearch /></span>
             <input 
                 type="text" 
@@ -42,7 +43,7 @@ function Search() {
                 placeholder="" 
                 id="search" 
             />
-        </div>
+        </SearchContainer>
         <div className="container mt-0 d-flex justify-content-center">
             {searchValue && (
                 <ul className="list-group mt-0 rounded-0">

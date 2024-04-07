@@ -16,6 +16,6 @@ export const CardImage = styled.img`
 
 export const ProductsContainer = styled.div`
     min-width: 90%;
-    max-width: 1200px !important;
+    max-width: 1200px;
     margin: 20px auto;
 `;
