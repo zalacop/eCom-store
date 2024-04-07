@@ -24,7 +24,7 @@ function ProductsCard({ product: { id, image, title, price, discountedPrice } })
         <div className="col-12 mb-5">
             <div className="card rounded-0" style={cardStyle}>
                 <Link to={`/product/${id}`} className="card-link">
-                    <img src={image.url} alt={title} className="card-img-top img-fluid rounded-0" style={cardImgStyle} />
+                    <img src={image.url} alt={title} className="card-img-top img-fluid rounded-0 mt-4 w-75" style={cardImgStyle} />
                     <div className="card-body">
                         <h5 className="card-title">{title}</h5>
                         {discountedPrice && discountedPrice !== price ? (
@@ -61,7 +61,6 @@ function Products() {
     return (
         <div className="container">
                 <div className="row">
-                    <div>cart items: {cart.length}</div>
                     {products.map((product) => (
                         <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4" key={product.id}>
                             <ProductsCard product={product} />
