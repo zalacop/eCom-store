@@ -91,10 +91,7 @@ function Product() {
                     <p className="d-flex justify-content-center mt-4">There are no reviews for this product!</p>
                 )}
             </div>
-        </div>                                 
-
-
-
+        </div>                                
         </>
     );
 };
