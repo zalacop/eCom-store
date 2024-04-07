@@ -23,14 +23,14 @@ function ProductsInCart() {
         <div className="py-8 mx-auto max-w-800 p-4">
             <div className="mx-auto px-4">
                 <h2>Your shopping cart</h2>
+                <Link to="/">
+                            <button className="btn btn-primary">Continue shopping</button>
+                        </Link>
                 {cart.length === 0 ? (
                     <p>Your cart is empty</p>
                 ) : (
                     <>
                         <p className="fs-3 font-bold">Total: ${getCartTotal()}</p>
-                        <Link to="/">
-                            <button className="btn btn-primary">Continue shopping</button>
-                        </Link>
                     </>
                 )}
             </div>
