@@ -12,9 +12,9 @@ function Checkout() {
 
     return (
         <div className="container d-flex flex-column justify-content-center mx-auto my-5">
-            <div className="d-flex flex-column justify-content-center mx-auto my-5 border p-5 gap-3">
+            <div className="d-flex card rounded-0 flex-column justify-content-center mx-auto my-5 p-5 gap-3 w-75">
                 <h3 className="fs-2 mx-auto">Success!</h3>
-                <p className="fs-5">Your order was successful! Your products will arrive shortly!</p>
+                <p className="fs-5 mx-auto">Your order was successful! Your products will arrive shortly!</p>
                 <Link to={"/"}>
                     <Button className="btn rounded-0 py-2 px-5 border-dark mx-auto d-flex justify-content-center">Back to shopping</Button>
                 </Link>

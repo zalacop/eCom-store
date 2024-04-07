@@ -31,7 +31,7 @@ function ProductsInCart() {
                     <p className="fs-4">Your cart is empty!</p>
                 ) : (
                     <>
-                        <p className="fs-3 font-weight-bold">Total: ${getCartTotal()}</p>
+                    <p className="fs-3">Total: ${getCartTotal()}</p>
                     </>
                 )}
             </div>
@@ -40,7 +40,7 @@ function ProductsInCart() {
                 <div className="row justify-content-center">
                     {cart.map(({ id, image, title, quantity, price, discountedPrice }) => (
                         <div key={id} className="col-lg-8 col-md-8 col-sm-12 mb-4">
-                            <div className="border rounded-0 p-3 d-flex flex-column flex-md-row"> 
+                            <div className="card border rounded-0 p-3 d-flex flex-column flex-md-row"> 
                                 <div className="col-lg-8 col-md-8 col-sm-12 d-flex flex-column justify-content-center align-items-center">
                                     <p className="text-center mt-3">Product total: ${((discountedPrice || price) * quantity).toFixed(2)}</p>
                                     <h3 className="text-2xl font-bold text-center mb-4">{title}</h3>

@@ -136,8 +136,7 @@ function Form() {
                     <span className="text-danger ms-3">{errorBody.errorMessage}</span>
                 </div>
                 <Button type="submit" className="btn rounded-0 py-2 px-5 border-dark mx-auto d-flex justify-content-center mt-5">Submit</Button>
-            </form>
-            
+            </form>            
         </div>
     );
 }
