@@ -21,55 +21,33 @@ function ProductsCard({ product: { id, image, title, price, discountedPrice } })
     }
 
     return (
-        // <div className="col-12 mb-5">
-        //     <div className="card" style={cardStyle}>
-        //         <Link to={`/product/${id}`} className="card-link">
-        //             <img src={image.url} alt={title} className="card-img-top img-fluid" style={cardImgStyle} />
-        //             <div className="card-body">
-        //                 <h5 className="card-title">{title}</h5>
-        //                 {discountedPrice && discountedPrice !== price ? (
-        //                     <>
-        //                         <p className="card-text">
-        //                             <span>NOW {calculateDiscount(price, discountedPrice)}% OFF</span>
-        //                         </p>
-        //                         <p className="card-text">New Price: ${discountedPrice}</p>
-        //                         <p className="card-text">Old Price: ${price}</p>
-        //                     </>
-        //                 ) : (
-        //                     <p className="card-text">$ {price}</p>
-        //                 )}
-        //             </div>
-        //         </Link>
-        //     </div>
-        // </div>
         <div className="col-12 mb-5">
-    <div className="card" style={cardStyle}>
-        <Link to={`/product/${id}`} className="card-link">
-            <img src={image.url} alt={title} className="card-img-top img-fluid" style={cardImgStyle} />
-            <div className="card-body">
-                <h5 className="card-title">{title}</h5>
-                {discountedPrice && discountedPrice !== price ? (
-                    <>
-                        <p className="card-text">
-                            <span>NOW {calculateDiscount(price, discountedPrice)}% OFF</span>
-                        </p>
-                        <div className="row justify-content-center"> 
-                            <div className="col text-center"> 
-                                <p className="card-text">New Price: ${discountedPrice}</p>
-                            </div>
-                            <div className="col text-center"> 
-                                <p className="card-text" style={{ textDecoration: 'line-through' }}>${price}</p>
-                            </div>
-                        </div>
-                    </>
-                ) : (
-                    <p className="card-text">$ {price}</p>
-                )}
+            <div className="card" style={cardStyle}>
+                <Link to={`/product/${id}`} className="card-link">
+                    <img src={image.url} alt={title} className="card-img-top img-fluid" style={cardImgStyle} />
+                    <div className="card-body">
+                        <h5 className="card-title">{title}</h5>
+                        {discountedPrice && discountedPrice !== price ? (
+                            <>
+                                <p className="card-text">
+                                    <span>NOW {calculateDiscount(price, discountedPrice)}% OFF</span>
+                                </p>
+                                <div className="row justify-content-center"> 
+                                    <div className="col text-center"> 
+                                        <p className="card-text">New Price: ${discountedPrice}</p>
+                                    </div>
+                                    <div className="col text-center"> 
+                                        <p className="card-text" style={{ textDecoration: 'line-through' }}>${price}</p>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <p className="card-text">$ {price}</p>
+                        )}
+                    </div>
+                </Link>
             </div>
-        </Link>
-    </div>
-</div>
-
+        </div>
     );
 };
 
